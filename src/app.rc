@@ -1,0 +1,32 @@
+// ============================================================================
+// app.rc —— 程序资源：嵌入鲸鱼桌宠图标
+// 图标源文件：项目根目录 whale-pet.ico（由 dsh-pet 的 notify-done.png 生成的 256x256 PNG-ICO）
+// ============================================================================
+#include <windows.h>
+
+1 ICON "..\\whale-pet.ico"
+
+1 VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  1,0,0,0
+FILEOS          0x00040004L
+FILETYPE        0x00000001L
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "080404B0"
+    BEGIN
+      VALUE "CompanyName",      "local"
+      VALUE "FileDescription",  "Whale Desktop Pet Standalone Host"
+      VALUE "FileVersion",      "1.0.0.0"
+      VALUE "InternalName",     "whale-pet-host"
+      VALUE "OriginalFilename", "whale-pet-host.exe"
+      VALUE "ProductName",      "Whale Desktop Pet"
+      VALUE "ProductVersion",   "1.0.0.0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x0804, 1200
+  END
+END

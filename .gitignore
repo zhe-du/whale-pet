@@ -1,0 +1,22 @@
+# 构建产物
+dist/
+*.zip
+*.7z
+
+# 运行时数据（不应进仓库）
+userdata/
+logs/
+bin/logs/
+testlocal/
+
+# 编译中间产物
+*.o
+*.obj
+*.res.o
+bin/probe.exe
+bin/app.res.o
+
+# 系统文件
+Thumbs.db
+desktop.ini
+.DS_Store
