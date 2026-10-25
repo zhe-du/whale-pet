@@ -707,6 +707,30 @@ async function handlePetRoute(req, res, url) {
     }
   }
 
+  // 渲染端 1s 轮询的统一状态源（官方 standalone 的同名接口）。
+  // 缺了它会一直 400：渲染端拿不到状态就把窗口缩成错误条并挪到屏幕外
+  // （-32000 / DPI 1.5 → -21333），表现为「桌宠凭空消失」。
+  // 独立模式没有 DSH 的余额 / 工作状态能力，返回同构的空快照即可。
+  if (rest === 'state') {
+    if (method !== 'GET') return sendJson(res, 405, { error: 'method not allowed' });
+    return sendJson(
+      res,
+      200,
+      {
+        sections: {
+          balance: {
+            counter: 0,
+            data: { ok: false, provider: 'standalone', reason: 'unsupported' },
+          },
+          workStatus: { counter: 0, data: null },
+          notify: { counter: 0, data: null },
+        },
+        pets: {},
+      },
+      { 'cache-control': 'no-cache, no-store' },
+    );
+  }
+
   if (rest === 'config/meta') {
     return sendJson(res, 200, {
       user: USER_CONFIG,
